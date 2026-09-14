@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BrainCircuit,
   Check,
-  Clock3,
   Dumbbell,
   Sparkles,
   Zap,

@@ -105,16 +105,13 @@ export default function Builder() {
     setWorkout(null);
 
     try {
-      const response = await fetch(
-        "http://localhost:3001/api/generate-workout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(input),
+      const response = await fetch("/api/generate-workout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify(input),
+      });
 
       const data = await response.json();
 
@@ -228,7 +225,7 @@ export default function Builder() {
                   aria-busy={loading}
                   className="group inline-flex min-h-12 items-center justify-center gap-8 bg-[var(--foreground)] px-5 text-sm font-medium text-white transition hover:bg-[#303030] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {loading ? 'Repwise is building...' : 'Build my workout'}
+                  {loading ? "Repwise is building..." : "Build my workout"}
 
                   {!loading && (
                     <ArrowRight
