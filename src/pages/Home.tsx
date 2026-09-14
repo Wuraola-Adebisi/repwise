@@ -18,9 +18,9 @@ const decisions = [
 
 const reasons = [
   "Kept the session within your available time.",
-  "Reduced volume because your energy is low.",
-  "Used only the equipment you have available.",
-  "Prioritised upper-body movements based on your goal.",
+  "Pulled back the volume because your energy is low.",
+  "Worked with the equipment you have.",
+  "Kept the session focused on your upper body.",
 ];
 
 export default function Home() {
@@ -48,8 +48,8 @@ export default function Home() {
 
             <p className="mt-7 max-w-xl text-base leading-7 text-[var(--muted)] md:text-lg">
               Tell Repwise your goal, available time, energy, equipment and
-              anything else that matters. Its AI interprets the situation and
-              builds a workout around it.
+              anything else that matters. Its AI makes sense of the situation
+              and builds a workout around what fits today.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -103,6 +103,7 @@ export default function Home() {
                     <p className="font-mono text-[9px] tracking-[0.12em] text-[var(--muted)]">
                       {label}
                     </p>
+
                     <p className="mt-2 text-sm">{value}</p>
                   </div>
                 ))}
@@ -110,9 +111,11 @@ export default function Home() {
 
               <div className="my-5 flex items-center gap-3">
                 <div className="h-px flex-1 bg-[var(--border)]" />
+
                 <div className="flex h-8 w-8 items-center justify-center bg-[var(--foreground)] text-white">
                   <BrainCircuit size={15} aria-hidden="true" />
                 </div>
+
                 <div className="h-px flex-1 bg-[var(--border)]" />
               </div>
 
@@ -121,18 +124,21 @@ export default function Home() {
                   <span className="font-mono text-[10px] uppercase tracking-[0.15em]">
                     Repwise
                   </span>
+
                   <Sparkles size={14} aria-hidden="true" />
                 </div>
 
                 <p className="mt-4 text-xs leading-5 text-[var(--muted)]">
-                  Interprets your context, weighs your constraints and
-                  determines what the session should prioritise.
+                  Takes everything you've told us, weighs what's possible
+                  today, and decides what your session should prioritise.
                 </p>
               </div>
 
               <div className="my-5 flex items-center gap-3">
                 <div className="h-px flex-1 bg-[var(--border)]" />
+
                 <ArrowRight size={15} aria-hidden="true" />
+
                 <div className="h-px flex-1 bg-[var(--border)]" />
               </div>
 
@@ -147,8 +153,9 @@ export default function Home() {
                       <p className="text-lg font-medium tracking-[-0.02em]">
                         Low-Energy Upper Body
                       </p>
+
                       <p className="mt-1 text-xs text-[var(--muted)]">
-                        Built around today's constraints
+                        Built for today
                       </p>
                     </div>
 
@@ -196,7 +203,8 @@ export default function Home() {
               <p className="max-w-2xl text-lg leading-8 text-[var(--muted)]">
                 A workout that made sense yesterday might not make sense today.
                 You might have less time, less energy, different equipment or a
-                completely different priority.
+                completely different priority. Repwise uses those details to
+                build a session that fits the day you're actually having.
               </p>
 
               <div className="mt-8 grid gap-3 sm:grid-cols-3">
@@ -212,6 +220,7 @@ export default function Home() {
                     <p className="font-mono text-xs tracking-[0.12em]">
                       {title}
                     </p>
+
                     <p className="mt-3 text-sm leading-6 text-[var(--muted)]">
                       {description}
                     </p>
@@ -241,30 +250,32 @@ export default function Home() {
 
             <p className="mt-5 max-w-lg text-base leading-7 text-[var(--muted)]">
               You don't have to translate your situation into fitness
-              terminology. Give Repwise the details in your own words. Its AI
-              extracts the constraints that matter.
+              terminology. Tell Repwise what's going on in your own words. Its
+              AI picks out what matters and uses it to shape your session.
             </p>
           </div>
 
           <div className="border border-[var(--border)] bg-[var(--surface)] p-5 md:p-7">
             <div className="flex items-center gap-3">
               <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
+
               <span className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--muted)]">
                 User context
               </span>
             </div>
 
             <p className="mt-5 text-lg leading-8 tracking-[-0.015em] md:text-2xl">
-              "I've only got about 30 minutes. I'm tired today but still want to
-              do something. I've got dumbbells and I'd rather focus on my upper
-              body."
+              "I've only got about 30 minutes. I'm tired today but still want
+              to do something. I've got dumbbells and I'd rather focus on my
+              upper body."
             </p>
 
             <div className="mt-7 border-t border-[var(--border)] pt-6">
               <div className="flex items-center gap-3">
                 <Sparkles size={15} aria-hidden="true" />
+
                 <span className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--muted)]">
-                  Repwise interprets
+                  AI picks up
                 </span>
               </div>
 
@@ -277,6 +288,7 @@ export default function Home() {
                     <p className="font-mono text-[9px] tracking-[0.1em] text-[var(--muted)]">
                       {label}
                     </p>
+
                     <p className="mt-2 text-sm">{value}</p>
                   </div>
                 ))}
@@ -299,12 +311,13 @@ export default function Home() {
               id="adaptation-heading"
               className="mt-4 text-3xl font-semibold tracking-[-0.035em] md:text-5xl"
             >
-              Your workout adapts.
+              Your workout changes with you.
             </h2>
 
             <p className="mt-5 text-base leading-7 text-[var(--muted)] md:text-lg">
-              Change the situation and Repwise changes the recommendation. The
-              goal can stay the same while the workout changes around it.
+              Change the situation and Repwise's AI changes the recommendation.
+              The goal can stay the same while the workout changes around what
+              you have available.
             </p>
           </div>
 
@@ -336,14 +349,16 @@ export default function Home() {
                   <span className="border border-[var(--border)] px-3 py-2">
                     {item.before}
                   </span>
+
                   <ArrowRight size={13} aria-hidden="true" />
+
                   <span className="border border-[var(--foreground)] bg-[var(--foreground)] px-3 py-2 text-white">
                     {item.after}
                   </span>
                 </div>
 
                 <p className="mt-5 text-sm leading-6 text-[var(--muted)]">
-                  Repwise recalculates the session around the new constraint.
+                  The AI adjusts the session to fit.
                 </p>
               </div>
             ))}
@@ -404,6 +419,10 @@ export default function Home() {
                 </div>
               ))}
             </div>
+
+            <p className="border-t border-[var(--border)] p-5 text-xs leading-5 text-[var(--muted)] md:p-6">
+              These decisions are made from the information you give Repwise.
+            </p>
           </div>
         </section>
 
@@ -431,6 +450,7 @@ export default function Home() {
               className="group inline-flex items-center gap-4 text-sm font-medium"
             >
               Explore the system
+
               <ArrowRight
                 size={15}
                 aria-hidden="true"
@@ -450,20 +470,20 @@ export default function Home() {
               {
                 number: "02",
                 icon: BrainCircuit,
-                title: "AI interprets it",
-                text: "Repwise turns your input into constraints and priorities.",
+                title: "AI makes sense of it",
+                text: "The AI turns your input into the constraints and priorities that shape your session.",
               },
               {
                 number: "03",
                 icon: Dumbbell,
-                title: "A session is built",
-                text: "The workout is generated around those decisions.",
+                title: "AI builds the session",
+                text: "Your workout is generated around those decisions.",
               },
               {
                 number: "04",
                 icon: Sparkles,
                 title: "You see why",
-                text: "The recommendation comes with the reasoning behind it.",
+                text: "You get the workout and the reasoning behind it.",
               },
             ].map(({ number, icon: Icon, title, text }, index) => (
               <div
@@ -502,7 +522,7 @@ export default function Home() {
             </h2>
 
             <p className="mt-5 max-w-xl text-base leading-7 text-[var(--muted)]">
-              Give Repwise the situation. Let its AI work out what fits.
+              Tell Repwise what's going on. Let its AI work out what fits.
             </p>
 
             <Link
@@ -510,6 +530,7 @@ export default function Home() {
               className="group mt-8 inline-flex min-h-12 items-center gap-8 bg-[var(--foreground)] px-5 py-4 text-sm font-medium text-white transition hover:bg-[#303030]"
             >
               Build my workout
+
               <ArrowRight
                 size={16}
                 aria-hidden="true"
