@@ -1,6 +1,6 @@
-import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { generateWorkout } from "../server/ai/generateWorkout";
-import type { WorkoutInput } from "../server/schemas/workout";
+import type { VercelRequest, VercelResponse } from '@vercel/node'
+import { generateWorkout } from '../server/ai/generateWorkout.js'
+import type { WorkoutInput } from '../server/schemas/workout.js'
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
