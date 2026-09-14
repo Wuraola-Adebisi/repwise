@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from '../components/Footer'
 
 const inputs = [
   ["GOAL", "Build strength"],
@@ -416,6 +417,7 @@ export default function HowItWorks() {
           </div>
         </section>
       </div>
+      <Footer />
     </main>
   );
 }

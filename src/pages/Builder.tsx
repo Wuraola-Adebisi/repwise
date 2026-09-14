@@ -8,6 +8,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import Header from "../components/Header";
+import Footer from '../components/Footer'
 
 type WorkoutInput = {
   goal: string;
@@ -346,6 +347,7 @@ export default function Builder() {
           </section>
         )}
       </div>
+      <Footer />
     </main>
   );
 }

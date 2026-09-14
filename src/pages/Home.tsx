@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from '../components/Footer'
 
 const decisions = [
   ["TIME", "30 min"],
@@ -544,6 +545,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <Footer />
     </main>
   );
 }

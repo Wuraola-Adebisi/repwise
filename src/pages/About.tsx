@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import Footer from '../components/Footer'
 
 const principles = [
   {
@@ -210,6 +211,7 @@ export default function About() {
           </Link>
         </section>
       </div>
+      <Footer />
     </main>
   );
 }

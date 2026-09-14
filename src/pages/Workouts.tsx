@@ -2,6 +2,7 @@ import { ArrowRight, Clock3, Dumbbell, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import SEO from '../components/SEO'
+import Footer from '../components/Footer'
 
 const scenarios = [
   {
@@ -149,6 +150,7 @@ export default function Workouts() {
           </div>
         </section>
       </div>
+      <Footer />
     </main>
   );
 }
