@@ -1,34 +1,39 @@
+import SEO from '../components/SEO'
 import {
   ArrowRight,
   BrainCircuit,
   Check,
   Database,
   SlidersHorizontal,
-} from 'lucide-react'
-import { Link } from 'react-router-dom'
-import Header from '../components/Header'
+} from "lucide-react";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
 const principles = [
   {
     icon: BrainCircuit,
-    title: 'Understand the situation',
+    title: "Understand the situation",
     text: "Repwise's AI interprets your goal, available time, energy, equipment and natural-language context before deciding what the session should look like.",
   },
   {
     icon: SlidersHorizontal,
-    title: 'Adapt to constraints',
-    text: 'The same goal can produce a different workout when your time, equipment, energy or priorities change.',
+    title: "Adapt to constraints",
+    text: "The same goal can produce a different workout when your time, equipment, energy or priorities change.",
   },
   {
     icon: Database,
-    title: 'Make the decision explainable',
-    text: 'The generated session is structured so the application can show what was recommended and why it fits your situation.',
+    title: "Make the decision explainable",
+    text: "The generated session is structured so the application can show what was recommended and why it fits your situation.",
   },
-]
+];
 
 export default function About() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
+      <SEO
+        title="About Repwise — AI Workout Decision Engine"
+        description="Repwise uses AI as a decision layer to turn your situation into a workout that fits."
+      />
       <Header />
 
       <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-24">
@@ -67,7 +72,7 @@ export default function About() {
 
           <div className="mt-8 divide-y divide-[var(--border)] border-y border-[var(--border)]">
             {principles.map((principle, index) => {
-              const Icon = principle.icon
+              const Icon = principle.icon;
 
               return (
                 <article
@@ -83,16 +88,14 @@ export default function About() {
                       0{index + 1}
                     </span>
 
-                    <h3 className="mt-2 font-medium">
-                      {principle.title}
-                    </h3>
+                    <h3 className="mt-2 font-medium">{principle.title}</h3>
                   </div>
 
                   <p className="text-sm leading-6 text-[var(--muted)]">
                     {principle.text}
                   </p>
                 </article>
-              )
+              );
             })}
           </div>
         </section>
@@ -120,16 +123,16 @@ export default function About() {
 
           <div className="mt-10 grid border border-[var(--border)] md:grid-cols-5">
             {[
-              ['01', 'Input', 'Your situation'],
-              ['02', 'Interpret', 'What matters'],
-              ['03', 'Decide', 'What fits'],
-              ['04', 'Generate', 'The session'],
-              ['05', 'Explain', 'Why it fits'],
+              ["01", "Input", "Your situation"],
+              ["02", "Interpret", "What matters"],
+              ["03", "Decide", "What fits"],
+              ["04", "Generate", "The session"],
+              ["05", "Explain", "Why it fits"],
             ].map(([number, title, text], index) => (
               <div
                 key={number}
                 className={`p-5 ${
-                  index > 0 ? 'border-t md:border-l md:border-t-0' : ''
+                  index > 0 ? "border-t md:border-l md:border-t-0" : ""
                 } border-[var(--border)]`}
               >
                 <span className="font-mono text-[10px] text-[var(--muted)]">
@@ -146,10 +149,7 @@ export default function About() {
           </div>
         </section>
 
-        <section
-          aria-labelledby="limits-heading"
-          className="mt-20 md:mt-28"
-        >
+        <section aria-labelledby="limits-heading" className="mt-20 md:mt-28">
           <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="font-mono text-xs uppercase tracking-[0.18em] text-[var(--muted)]">
@@ -167,9 +167,9 @@ export default function About() {
             <div className="border border-[var(--border)] bg-white p-6 md:p-8">
               <ul className="space-y-5">
                 {[
-                  'Repwise does not diagnose injuries or medical conditions.',
-                  'Repwise does not determine whether someone is medically safe to exercise.',
-                  'When context is incomplete, recommendations should remain conservative rather than pretending to know more than they do.',
+                  "Repwise does not diagnose injuries or medical conditions.",
+                  "Repwise does not determine whether someone is medically safe to exercise.",
+                  "When context is incomplete, recommendations should remain conservative rather than pretending to know more than they do.",
                 ].map((item) => (
                   <li
                     key={item}
@@ -211,5 +211,5 @@ export default function About() {
         </section>
       </div>
     </main>
-  )
+  );
 }

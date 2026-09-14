@@ -1,3 +1,4 @@
+import SEO from '../components/SEO'
 import { useState } from "react";
 import {
   ArrowRight,
@@ -139,6 +140,10 @@ export default function Builder() {
 
   return (
     <main className="min-h-screen bg-[var(--background)]">
+      <SEO
+        title="Build a Workout — Repwise"
+        description="Tell Repwise what you want to accomplish, how you're feeling, what you have available, and let AI build your workout."
+      />
       <Header />
 
       <div className="mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-24">

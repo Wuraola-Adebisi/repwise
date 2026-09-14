@@ -1,6 +1,7 @@
 import { ArrowRight, Clock3, Dumbbell, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import SEO from '../components/SEO'
 
 const scenarios = [
   {
@@ -32,6 +33,10 @@ const scenarios = [
 export default function Workouts() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
+      <SEO
+        title="Workout Examples — Repwise"
+        description="See how Repwise adapts workouts to different goals, time limits, energy levels, equipment, and situations."
+      />
       <Header />
 
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">

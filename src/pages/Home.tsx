@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import {
   ArrowRight,
   BrainCircuit,
@@ -26,6 +27,11 @@ const reasons = [
 export default function Home() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
+      <SEO
+        title="Repwise — AI workout decision engine"
+        description="Build a workout around your goal, time, energy, equipment, and what’s happening today. Repwise uses AI to decide what fits."
+      />
+
       <Header />
 
       <div className="mx-auto max-w-7xl px-5 md:px-8">
@@ -129,8 +135,8 @@ export default function Home() {
                 </div>
 
                 <p className="mt-4 text-xs leading-5 text-[var(--muted)]">
-                  Takes everything you've told us, weighs what's possible
-                  today, and decides what your session should prioritise.
+                  Takes everything you've told us, weighs what's possible today,
+                  and decides what your session should prioritise.
                 </p>
               </div>
 
@@ -265,9 +271,9 @@ export default function Home() {
             </div>
 
             <p className="mt-5 text-lg leading-8 tracking-[-0.015em] md:text-2xl">
-              "I've only got about 30 minutes. I'm tired today but still want
-              to do something. I've got dumbbells and I'd rather focus on my
-              upper body."
+              "I've only got about 30 minutes. I'm tired today but still want to
+              do something. I've got dumbbells and I'd rather focus on my upper
+              body."
             </p>
 
             <div className="mt-7 border-t border-[var(--border)] pt-6">
@@ -450,7 +456,6 @@ export default function Home() {
               className="group inline-flex items-center gap-4 text-sm font-medium"
             >
               Explore the system
-
               <ArrowRight
                 size={15}
                 aria-hidden="true"
@@ -530,7 +535,6 @@ export default function Home() {
               className="group mt-8 inline-flex min-h-12 items-center gap-8 bg-[var(--foreground)] px-5 py-4 text-sm font-medium text-white transition hover:bg-[#303030]"
             >
               Build my workout
-
               <ArrowRight
                 size={16}
                 aria-hidden="true"

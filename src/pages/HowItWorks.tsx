@@ -1,3 +1,4 @@
+import SEO from '../components/SEO'
 import {
   ArrowDown,
   ArrowRight,
@@ -34,6 +35,10 @@ const considerations = [
 export default function HowItWorks() {
   return (
     <main className="min-h-screen bg-[var(--background)]">
+      <SEO
+        title="How Repwise Works — AI Workout Decisions"
+        description="See how Repwise uses AI to interpret your goals, constraints, and context before building a workout."
+      />
       <Header />
 
       <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
