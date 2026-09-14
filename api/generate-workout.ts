@@ -23,24 +23,26 @@ type Workout = {
   considerations: string[];
 };
 
+type ExerciseCategory =
+  | "lower"
+  | "upper-push"
+  | "upper-pull"
+  | "core"
+  | "conditioning"
+  | "mobility";
+
 type ExerciseTemplate = {
   name: string;
   sets: number;
   reps: number;
   reason: string;
-  category:
-    | "lower"
-    | "upper-push"
-    | "upper-pull"
-    | "core"
-    | "conditioning"
-    | "mobility";
+  category: ExerciseCategory;
   equipment: string[];
 };
 
-const noEquipment = ["No equipment"];
-const dumbbells = ["Dumbbells", "Home gym", "Full gym"];
-const gym = ["Home gym", "Full gym"];
+const allEquipment = ["No equipment", "Dumbbells", "Home gym", "Full gym"];
+
+const dumbbellCompatible = ["Dumbbells", "Home gym", "Full gym"];
 
 const exerciseLibrary: ExerciseTemplate[] = [
   {
@@ -50,7 +52,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reason:
       "A compound lower-body movement that works well for strength and muscle.",
     category: "lower",
-    equipment: dumbbells,
+    equipment: dumbbellCompatible,
   },
   {
     name: "Dumbbell Romanian Deadlift",
@@ -59,15 +61,15 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reason:
       "Loads the posterior chain while keeping the movement simple and controlled.",
     category: "lower",
-    equipment: dumbbells,
+    equipment: dumbbellCompatible,
   },
   {
     name: "Bodyweight Squat",
     sets: 3,
     reps: 12,
-    reason: "Provides lower-body work without requiring equipment.",
+    reason: "Provides lower-body work without requiring external load.",
     category: "lower",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Glute Bridge",
@@ -75,7 +77,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 12,
     reason: "Targets the glutes and posterior chain without external load.",
     category: "lower",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Dumbbell Floor Press",
@@ -84,7 +86,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reason:
       "Provides a stable upper-body pushing movement without requiring a bench.",
     category: "upper-push",
-    equipment: dumbbells,
+    equipment: dumbbellCompatible,
   },
   {
     name: "Push-Up",
@@ -92,7 +94,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 10,
     reason: "Provides accessible upper-body pushing work using bodyweight.",
     category: "upper-push",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "One-Arm Dumbbell Row",
@@ -100,7 +102,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 8,
     reason: "Adds upper-body pulling work using the available dumbbells.",
     category: "upper-pull",
-    equipment: dumbbells,
+    equipment: dumbbellCompatible,
   },
   {
     name: "Backpack Row",
@@ -108,7 +110,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 10,
     reason: "Provides a pulling movement using a simple household load.",
     category: "upper-pull",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Dead Bug",
@@ -117,7 +119,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reason:
       "Builds controlled core stability without adding unnecessary fatigue.",
     category: "core",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Plank",
@@ -125,7 +127,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 30,
     reason: "Adds simple core stability work with minimal setup.",
     category: "core",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Mountain Climber",
@@ -133,7 +135,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 20,
     reason: "Raises heart rate while adding full-body movement.",
     category: "conditioning",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Jumping Jack",
@@ -141,7 +143,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 30,
     reason: "Provides simple conditioning work that requires no equipment.",
     category: "conditioning",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "World’s Greatest Stretch",
@@ -149,7 +151,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 6,
     reason: "Moves several major areas through controlled ranges of motion.",
     category: "mobility",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "Cat-Cow",
@@ -157,7 +159,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 8,
     reason: "Adds gentle spinal movement at a controlled pace.",
     category: "mobility",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
   {
     name: "90/90 Hip Switch",
@@ -165,7 +167,7 @@ const exerciseLibrary: ExerciseTemplate[] = [
     reps: 8,
     reason: "Works hip rotation through a controlled range of motion.",
     category: "mobility",
-    equipment: noEquipment,
+    equipment: allEquipment,
   },
 ];
 
@@ -175,13 +177,19 @@ function getAvailableExercises(equipment: string) {
   );
 }
 
+function hasContext(context: string, terms: string[]) {
+  const text = context.toLowerCase();
+
+  return terms.some((term) => text.includes(term));
+}
+
 function scaleVolume(
   exercise: ExerciseTemplate,
   energy: string,
   duration: string,
 ) {
   let sets = exercise.sets;
-  let reps = exercise.reps;
+  const reps = exercise.reps;
 
   if (energy === "Low") {
     sets = Math.max(2, sets - 1);
@@ -202,29 +210,7 @@ function scaleVolume(
   return { sets, reps };
 }
 
-function hasContext(context: string, terms: string[]) {
-  const text = context.toLowerCase();
-
-  return terms.some((term) => text.includes(term));
-}
-
-function selectExercises(input: WorkoutInput): WorkoutExercise[] {
-  const available = getAvailableExercises(input.equipment);
-  const goal = input.goal.toLowerCase();
-
-  if (goal === "mobility") {
-    const mobility = available.filter(
-      (exercise) => exercise.category === "mobility",
-    );
-
-    return mobility.map((exercise) => ({
-      name: exercise.name,
-      sets: exercise.sets,
-      reps: exercise.reps,
-      reason: exercise.reason,
-    }));
-  }
-
+function getContextFlags(input: WorkoutInput) {
   const avoidLowerBody =
     input.energy === "Low" ||
     hasContext(input.context, [
@@ -246,41 +232,91 @@ function selectExercises(input: WorkoutInput): WorkoutExercise[] {
     "upper body today",
   ]);
 
-  const shortSession = input.duration === "15 min";
+  return {
+    avoidLowerBody,
+    upperBodyPriority,
+  };
+}
 
-  let categories: WorkoutExercise["name"][] = [];
+function getPreferredCategories(input: WorkoutInput): ExerciseCategory[] {
+  const goal = input.goal.toLowerCase();
+  const { avoidLowerBody, upperBodyPriority } = getContextFlags(input);
+
+  if (goal === "mobility") {
+    return ["mobility", "core"];
+  }
 
   if (goal === "build strength") {
-    const preferred = ["lower", "upper-push", "upper-pull", "core"];
-
     if (upperBodyPriority || avoidLowerBody) {
-      categories = ["upper-push", "upper-pull", "core"];
-    } else {
-      categories = preferred;
+      return ["upper-push", "upper-pull", "core", "lower"];
     }
+
+    return ["lower", "upper-push", "upper-pull", "core"];
   }
 
   if (goal === "build muscle") {
     if (upperBodyPriority || avoidLowerBody) {
-      categories = ["upper-push", "upper-pull", "core"];
-    } else {
-      categories = ["lower", "upper-push", "upper-pull", "core"];
+      return ["upper-push", "upper-pull", "core", "lower"];
     }
+
+    return ["lower", "upper-push", "upper-pull", "core"];
   }
 
   if (goal === "improve fitness") {
-    categories = ["conditioning", "lower", "upper-push", "core"];
+    if (avoidLowerBody) {
+      return ["conditioning", "upper-push", "upper-pull", "core"];
+    }
+
+    return ["conditioning", "lower", "upper-push", "core"];
   }
 
-  if (shortSession) {
-    categories = categories.slice(0, 3);
+  return ["lower", "upper-push", "upper-pull", "core"];
+}
+
+function selectExercises(input: WorkoutInput): WorkoutExercise[] {
+  const available = getAvailableExercises(input.equipment);
+  const preferredCategories = getPreferredCategories(input);
+
+  const maxExercises =
+    input.duration === "15 min" ? 3 : input.duration === "30 min" ? 4 : 5;
+
+  const selected: ExerciseTemplate[] = [];
+
+  for (const category of preferredCategories) {
+    if (selected.length >= maxExercises) {
+      break;
+    }
+
+    const exercise = available.find(
+      (candidate) =>
+        candidate.category === category &&
+        !selected.some(
+          (selectedExercise) => selectedExercise.name === candidate.name,
+        ),
+    );
+
+    if (exercise) {
+      selected.push(exercise);
+    }
   }
 
-  const selected = categories
-    .map((category) =>
-      available.find((exercise) => exercise.category === category),
-    )
-    .filter((exercise): exercise is ExerciseTemplate => Boolean(exercise));
+  // Fallback: if a preferred category was unavailable,
+  // fill the remaining slots with any compatible exercises.
+  if (selected.length < maxExercises) {
+    for (const exercise of available) {
+      if (selected.length >= maxExercises) {
+        break;
+      }
+
+      const alreadySelected = selected.some(
+        (selectedExercise) => selectedExercise.name === exercise.name,
+      );
+
+      if (!alreadySelected) {
+        selected.push(exercise);
+      }
+    }
+  }
 
   return selected.map((exercise) => {
     const volume = scaleVolume(exercise, input.energy, input.duration);
@@ -304,9 +340,7 @@ function getIntensity(input: WorkoutInput) {
   }
 
   if (input.energy === "Great") {
-    return input.goal === "Improve fitness"
-      ? "Moderate to high"
-      : "Moderate to high";
+    return "Moderate to high";
   }
 
   return "Moderate";
@@ -359,31 +393,15 @@ function getConsiderations(input: WorkoutInput, exercises: WorkoutExercise[]) {
     );
   }
 
-  if (
-    hasContext(input.context, [
-      "sore legs",
-      "leg soreness",
-      "legs are sore",
-      "lower body soreness",
-      "knee pain",
-      "knee hurts",
-      "knee injury",
-    ])
-  ) {
+  const { avoidLowerBody, upperBodyPriority } = getContextFlags(input);
+
+  if (avoidLowerBody) {
     considerations.push(
       "Reduced lower-body demand because your context suggests your legs need a lighter workload.",
     );
   }
 
-  if (
-    hasContext(input.context, [
-      "upper body",
-      "arms",
-      "chest",
-      "back",
-      "shoulders",
-    ])
-  ) {
+  if (upperBodyPriority) {
     considerations.push(
       "Shifted the session toward upper-body work based on your additional context.",
     );
